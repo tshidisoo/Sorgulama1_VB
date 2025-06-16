@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Quiz - Veritabanı Sorguları</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>SQL Veritabanı Sorguları Quiz</h1>
+            <p>Veritabanı Yönetim Sistemleri - SQL DQL Konuları</p>
+        </header>
+
+        <div class="quiz-section" id="multipleChoice">
+            <h2>Çoktan Seçmeli Sorular (30 Soru)</h2>
+            <div class="quiz-info">
+                <span>Soru: <span id="currentQuestion">1</span> / 30</span>
+                <span>Puan: <span id="score">0</span></span>
+            </div>
+            
+            <div class="question-container">
+                <div class="question" id="question"></div>
+                <div class="options" id="options"></div>
+                <button id="nextBtn" onclick="nextQuestion()">Sonraki Soru</button>
+            </div>
+            
+            <div class="result" id="result" style="display: none;">
+                <h3>Quiz Tamamlandı!</h3>
+                <p>Toplam Puanınız: <span id="finalScore"></span> / 30</p>
+                <button onclick="restartQuiz()">Tekrar Başla</button>
+                <button onclick="showCodingQuestions()">Kod Yazma Sorularına Geç</button>
+            </div>
+        </div>
+
+        <div class="quiz-section" id="codingQuestions" style="display: none;">
+            <h2>Kod Yazma Soruları (2 Soru)</h2>
+            <div class="coding-question">
+                <h3>Soru 1:</h3>
+                <p>ÖĞRENCILER tablosundan BARTIN memleketli öğrencilerin adı, soyadı ve numaralarını getirecek SQL sorgusunu yazınız. Sonuçları öğrenci adına göre alfabetik olarak sıralayınız.</p>
+                <textarea id="code1" placeholder="SQL sorgunuzu buraya yazınız...">SELECT NUMARA, ADI, SOYADI
+FROM ÖĞRENCILER
+WHERE MEMLEKET = 'BARTIN'
+ORDER BY ADI ASC;</textarea>
+            </div>
+            
+            <div class="coding-question">
+                <h3>Soru 2:</h3>
+                <p>ÜRÜNLER tablosundan her ürün grubu için toplam stok değerini (TUTAR toplamı) ve ortalama birim fiyatını hesaplayacak SQL sorgusunu yazınız. Sadece 2'den fazla ürünü olan grupları gösteriniz.</p>
+                <textarea id="code2" placeholder="SQL sorgunuzu buraya yazınız...">SELECT [ÜRÜN GRUBU],
+    SUM(TUTAR) AS 'Toplam Stok Değeri',
+    AVG([BİRİM FİYAT]) AS 'Ortalama Birim Fiyat'
+FROM ÜRÜNLER
+GROUP BY [ÜRÜN GRUBU]
+HAVING COUNT(*) > 2;</textarea>
+            </div>
+            
+            <button onclick="showMultipleChoice()">Çoktan Seçmeli Sorulara Dön</button>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
